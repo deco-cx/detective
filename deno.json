@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "release": "deno run -A https://deno.land/x/live/scripts/release.ts",
+    "check": "deno fmt && deno check detective.ts",
+    "cache_clean": "rm deno.lock; deno cache -r detective.ts",
+    "info_json": "deno info --json detective.ts > deps.json",
+    "detective": "deno run -A ./detective.ts -- ./deps.json",
+    "deps": "deno task cache_clean && deno task info_json && deno task detective"
+  },
+  "fmt": {
+    "files": {
+      "exclude": ["README.md"]
+    }
+  }
+}
