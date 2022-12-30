@@ -19,7 +19,7 @@ deno install --allow-read --allow-write --allow-net --allow-env --allow-run --un
 First, create a `deps.json` file using `deno info --json <your_root.ts>`.
 
 ```bash
-deno info --json ./src/index.ts > deps.json
+deno info --json ./main.ts > deps.json
 ```
 
 Then, run `detective` with the `deps.json` file as an argument.
