@@ -73,7 +73,10 @@ export const logResults = (graph: { modules: Module[] }, {
 
   const sortedDeps = Object.entries(depModules).sort(([_, a], [__, b]) =>
     b.size - a.size
-  );
+  ).map((i) => {
+    i[1].size ??= 0;
+    return i;
+  });
   console.log(`\nDeps from largest to smallest:`);
   console.table(sortedDeps.map(entryToRow(sizeSum, fileSum)));
 
