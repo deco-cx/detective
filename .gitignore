@@ -72,3 +72,6 @@ server/
 import_map.local.json
 
 deps.json
+
+.cursorindexingignore
+.specstory/

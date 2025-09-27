@@ -77,13 +77,17 @@ export const investigate = (graph: { modules: Module[] }): Results => {
       locator = stripColor(locator);
     }
 
+    const moduleSize = typeof dep.size === "number" && Number.isFinite(dep.size)
+      ? dep.size
+      : 0;
+
     if (!userOrDepsModules[locator]) {
       userOrDepsModules[locator] = {
-        size: dep.size,
+        size: moduleSize,
         files: 1,
       };
     } else {
-      userOrDepsModules[locator].size += dep.size;
+      userOrDepsModules[locator].size += moduleSize;
       userOrDepsModules[locator].files += 1;
     }
     if (esmVersion) {
@@ -115,11 +119,11 @@ export const investigate = (graph: { modules: Module[] }): Results => {
     sizeMedian: median(sizes) || 0,
     sizePercentile: percentile(sizes, 0.90) || 0,
     sizeMax: Math.max(...sizes, 0),
-    fileSum: sum(files),
-    fileMax: Math.max(...files),
-    filePercentile: percentile(files, 0.90),
-    userSizeSum: sum(userSizes),
-    userFileSum: sum(userFiles),
+    fileSum: sum(files) || 0,
+    fileMax: Math.max(...files, 0),
+    filePercentile: percentile(files, 0.90) || 0,
+    userSizeSum: sum(userSizes) || 0,
+    userFileSum: sum(userFiles) || 0,
   };
 };
 
