@@ -1,5 +1,26 @@
 {
   "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/fmt@1.0.0": "jsr:@std/fmt@1.0.0",
+      "jsr:@std/fmt@1.0.8": "jsr:@std/fmt@1.0.8",
+      "jsr:@std/path@1.0.0": "jsr:@std/path@1.0.0"
+    },
+    "jsr": {
+      "@std/fmt@1.0.0": {
+        "integrity": "8a95c9fdbb61559418ccbc0f536080cf43341655e1444f9d375a66886ceaaa3d"
+      },
+      "@std/fmt@1.0.8": {
+        "integrity": "71e1fc498787e4434d213647a6e43e794af4fd393ef8f52062246e06f7e372b7"
+      },
+      "@std/path@1.0.0": {
+        "integrity": "77fcb858b6e38777d1154df0f02245ba0b07e2c40ca3c0eec57c9233188c2d21"
+      }
+    }
+  },
+  "redirects": {
+    "https://esm.sh/v102/@types/stats-lite@~2.2/index~.d.ts": "https://esm.sh/v102/@types/stats-lite@2.2.2/index~.d.ts"
+  },
   "remote": {
     "https://deno.land/std@0.170.0/_util/asserts.ts": "d0844e9b62510f89ce1f9878b046f6a57bf88f208a10304aab50efcb48365272",
     "https://deno.land/std@0.170.0/_util/os.ts": "8a33345f74990e627b9dfe2de9b040004b08ea5146c7c9e8fe9a29070d193934",
