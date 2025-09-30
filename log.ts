@@ -1,12 +1,12 @@
-import { format } from "https://deno.land/std@0.170.0/fmt/bytes.ts";
+import { format } from "jsr:@std/fmt@1.0.0/bytes";
 import { Module, Results, StatModule } from "./types.ts";
 import { dependsOn } from "./depends.ts";
-import { stripColor } from "https://deno.land/std@0.170.0/fmt/colors.ts";
+import { stripAnsiCode } from "jsr:@std/fmt@1.0.0/colors";
 
 const entryToRow =
   (sizeSum: number, fileSum: number) => ([k, m]: [string, StatModule]) => {
     return {
-      module: stripColor(k).substring(0, 30),
+      module: stripAnsiCode(k).substring(0, 30),
       bytes: format(m.size, { maximumFractionDigits: 2 }),
       "size (%)": (m.size / sizeSum).toLocaleString(undefined, {
         style: "percent",
@@ -44,7 +44,7 @@ export const logResults = (graph: { modules: Module[] }, {
       console.log(k);
       console.log(v);
       console.log(`Module ${v.parsed!.module} is depended by:`);
-      console.log(dependsOn(stripColor(v.parsed?.module!), graph));
+      console.log(dependsOn(stripAnsiCode(v.parsed?.module!), graph));
       console.log();
     }
   } else {
@@ -90,7 +90,7 @@ export const logResults = (graph: { modules: Module[] }, {
     console.log(
       offender,
       `is depended by`,
-      dependsOn(stripColor(offender), graph),
+      dependsOn(stripAnsiCode(offender), graph),
     );
   }
   console.log("\n");
@@ -103,7 +103,7 @@ export const logResults = (graph: { modules: Module[] }, {
       console.log(
         offender,
         `is depended by`,
-        dependsOn(stripColor(offender), graph),
+        dependsOn(stripAnsiCode(offender), graph),
       );
     }
     console.log("\n");

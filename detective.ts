@@ -1,4 +1,4 @@
-import { relative } from "https://deno.land/std@0.170.0/path/mod.ts";
+import { relative } from "jsr:@std/path@1.0.0";
 import {
   mean,
   median,
@@ -7,12 +7,8 @@ import {
 } from "https://esm.sh/stats-lite@2.2.0?pin=v102";
 import { Module, ParsedModule, Results, StatModule } from "./types.ts";
 import { logResults } from "./log.ts";
-import {
-  green,
-  magenta,
-  stripColor,
-  yellow,
-} from "https://deno.land/std@0.170.0/fmt/colors.ts";
+import { green, magenta, yellow } from "jsr:@std/fmt@1.0.0/colors";
+import { stripAnsiCode } from "jsr:@std/fmt@1.0.0/colors";
 
 const USER_MODULE_HOST = "local";
 const cwd = Deno.cwd();
@@ -74,7 +70,7 @@ export const investigate = (graph: { modules: Module[] }): Results => {
       : `${module}`;
 
     if (Deno.noColor) {
-      locator = stripColor(locator);
+      locator = stripAnsiCode(locator);
     }
 
     const moduleSize = typeof dep.size === "number" && Number.isFinite(dep.size)
@@ -94,7 +90,7 @@ export const investigate = (graph: { modules: Module[] }): Results => {
       if (!depsModulesMultipleVersions[module]) {
         depsModulesMultipleVersions[module] = new Set<string>();
       }
-      depsModulesMultipleVersions[module].add(stripColor(locator));
+      depsModulesMultipleVersions[module].add(stripAnsiCode(locator));
     }
   }
 
